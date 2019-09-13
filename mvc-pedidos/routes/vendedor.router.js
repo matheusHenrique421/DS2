@@ -6,7 +6,7 @@ const routes = express.Router();
 routes.get('/', vendedorController.find);
 routes.post('/', vendedorController.create);
 
-routes.get('/:id([0-9]+)', vendedorController.findByID);
+routes.get('/:id([0-9]+)', vendedorController.findById);
 routes.put('/:id([0-9]+)', vendedorController.update);
 routes.delete('/:id([0-9]+)', vendedorController.delete);
 

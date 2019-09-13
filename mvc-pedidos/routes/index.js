@@ -1,8 +1,14 @@
 const express = require('express');
-const estadoRoute = require('./estado.router');
-const stateRoutes = require('./cidade.router');
+const clienteRoute = require('./cliente.router');
+const vendedorRoute = require('./vendedor.router');
+const produtoRoute = require('./produto.router');
+const pedidoRoute = require('./pedido.router');
 
 const routes = new express.Router();
-routes.use('/estado', estadoRoute);
-routes.use('/cidade', stateRoutes);
+
+routes.use('/clientes', clienteRoute);
+routes.use('/vendedores', vendedorRoute);
+routes.use('/produtos', produtoRoute);
+routes.use('/pedidos', pedidoRoute);
+
 module.exports = routes;
