@@ -1,12 +1,12 @@
 const connection = require('../mysql-connection');
 
-const query = 'SELECT p.id as p_id, p.codigo as p_codigo, p.dtpedido, '+
-                     'p.observacao, c.id as c_id, c.codigo as c_codigo, '+
-                     'c.nome as c_nome, c.email as c_email, v.id as v_id, '+
-                     'v.codigo as v_codigo, v.nome as v_nome, v.email as v_email '+
-              'FROM pedido p '+
-              'INNER JOIN cliente c ON c.id = p.cliente_id '+
-              'INNER JOIN vendedor v ON v.id = p.vendedor_id '
+const query = 'SELECT p.id as p_id, p.codigo as p_codigo, p.dtpedido, ' +
+    'p.observacao, c.id as c_id, c.codigo as c_codigo, ' +
+    'c.nome as c_nome, c.email as c_email, v.id as v_id, ' +
+    'v.codigo as v_codigo, v.nome as v_nome, v.email as v_email ' +
+    'FROM pedido p ' +
+    'INNER JOIN cliente c ON c.id = p.cliente_id ' +
+    'INNER JOIN vendedor v ON v.id = p.vendedor_id '
 
 module.exports = {
     find: (callback) => {
@@ -16,14 +16,14 @@ module.exports = {
                 callback(error, false);
                 return;
             }
-            
+
             const idPedido = resultPedido[0].p_id;
-            
-            const queryItens = 'SELECT ip.id as ip_id, ip.qtdade, ip.vlrunit, '+
-                                      'p.id as p_id, p.codigo, p.nome, p.descricao, p.preco '+
-                               'FROM itempedido ip '+
-                               'INNER JOIN produto p ON p.id = ip.produto_id '+
-                               'WHERE ip.pedido_id = '+ idPedido;
+
+            const queryItens = 'SELECT ip.id as ip_id, ip.qtdade, ip.vlrunit, ' +
+                'p.id as p_id, p.codigo, p.nome, p.descricao, p.preco ' +
+                'FROM itempedido ip ' +
+                'INNER JOIN produto p ON p.id = ip.produto_id ' +
+                'WHERE ip.pedido_id = ' + idPedido;
 
             connection.query(queryItens, (error, resultItens) => {
                 if (error) {
@@ -43,12 +43,12 @@ module.exports = {
                             id: item.p_id,
                             codigo: item.codigo,
                             nome: item.nome,
-                            descricao: item.descricao,                        
+                            descricao: item.descricao,
                             preco: item.preco
                         }
                     }
 
-                    itens.push( itempedido );
+                    itens.push(itempedido);
 
                 }
 
@@ -62,12 +62,42 @@ module.exports = {
         callback;
     },
     create: (params, callback) => {
-        callback;
-    },
+        connection.beginTransaction(error => {
+            if (error) {
+                callback(error, false);
+                return;
+            }
+            // INSERE O CABEÇALHO DO PEDIDO
+            connection.query('', [], (error, cabecResult) => {
+                // FAZ ROLLBACK, SE ERROR NO CABEÇALHO
+                if (error) {
+                    connection.rollback(() => {
+                        callback(error, false);
+                        return;
+                    })
+                }
+                // monta a query de inserção de itens 
+                let qrInsertItens = 'INSERT INTO itempedido (pedido_id, produto_id, qtdade, vlrunit) VALUES';
+
+                // INSERE OS INTENS DO PEDIDO
+                for (item of params.itens) {
+                }
+
+                connection.query('', [], () => {
+
+                })
+
+            }
+            });
+
+
+    });
+
+},
     update: (params, callback) => {
         callback;
     },
-    delete: (params, callback) => {
-        callback;
-    }
+        delete: (params, callback) => {
+            callback;
+        }
 }

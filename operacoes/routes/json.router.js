@@ -1,12 +1,10 @@
 module.exports = (app) => {
 
-    app.post('/json', (req, res) => {
+    app.post('/json', (req,res) => {
 
         console.log( req.body );
 
-        
-
-        res.json({ result: req.body.mensagem });
+        res.json( {result: req.body.mensagem} );
     });
 
 }

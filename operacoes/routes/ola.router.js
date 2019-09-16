@@ -4,10 +4,10 @@ module.exports = app => {
 
         var param1 = req.query.nome;
         var param2 = req.query.sobrenome;
-        //res.send('Ola!'+ param1 + ' '+param2);
-        res.send(`Ola ${param1} ${param2}`);
-
+    
+        //res.send('Olá '+ param1 +' '+ param2);
+        res.send(`Olá ${param1} ${param2}`);
+    
     });
-
 
 }

@@ -2,19 +2,16 @@ const express = require('express');
 const consign = require('consign');
 const bodyParser = require('body-parser');
 
-// function pode ser substuido por =>
-
-//Instancia a aplicaçao 
+//Instancia a aplicação
 const app = express();
 
-//Adiciona o body-parser a  aplicacao para poder receber JSON no body da requisição
-app.use(bodyParser.json());
+//Adiciona o body-parser à aplicação para poder receber JSON no body da requisição
+app.use( bodyParser.json() );
 
-// padrao
-app.get('/', (req, res) => {
-    res.send('Give me a bottle of rum!');
+//Padrao
+app.get('/', function(req, res){
+    res.send('Its Working!');
 });
-
 
 consign()
     .include('routes')
