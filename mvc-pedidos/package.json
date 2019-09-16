@@ -1,5 +1,5 @@
 {
-  "name": "mvc",
+  "name": "mvc-pedido",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "mysql": "^2.17.1"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.2"
   },
   "scripts": {
     "start": "nodemon index.js"
