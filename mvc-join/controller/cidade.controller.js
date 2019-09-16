@@ -1,20 +1,18 @@
-const respository = require('../repository/cidade.repository');
-
+const repository = require('../repository/cidade.repository');
 
 module.exports = {
-    find: (req, res) => {
+    find :(req,res) => {
 
-        respository.find((error, result) => {
+        repository.find((error, result) => {
             if (error) {
-                res.status(500).send(error)
+                res.status(500).send(error);
             }
 
-            const cidade = [];
+            const cidades = [];
 
             for (item of result) {
 
-                // CONVERTE DE RELACIONAL PARA OBJETO
-
+                //Converte de RELACIONAL para OBJETO
                 let cidade = {
                     id: item.cidade_id,
                     nome: item.cidade_nome,
@@ -24,63 +22,83 @@ module.exports = {
                         sigla: item.estado_sigla
                     }
                 }
-                cidade.push(cidade);
+                
+                cidades.push(cidade);
             }
 
-            res.send(cidade);
+            res.send(cidades);
         });
-    },
 
-    create: (req, res) => {
-        // CONVERTE DE OBJETO PARA RELACIONAL
+    },
+    create: (req,res) => { 
+        
+        //Converter de OBJETO para RELACIONAL
         const cidade = {
             nome: req.body.nome,
             estado_id: req.body.estado.id
         }
 
-        respository.create(cidade, (error, result) => {
+        repository.create(cidade, (error, result) => {
             if (error) {
                 res.status(500).send(error);
             }
+
             res.send(result);
         });
     },
-
-    findByID: (req, res) => {
-        respository.findById(req.params, (error, result) => {
+    findById: (req,res) => {
+        
+        repository.findById(req.params, (error, result) => {
             if (error) {
                 res.status(500).send(error);
             }
-            // VALIDA SE O EXISTE NO BANCO
-            if (!result[0]) {
+
+            //Valida se o id existe no banco
+            if (! result[0]) {
                 res.status(404).send('not found');
             }
-            res.send(result[0]);
+
+            //Converte de RELACIONAL para OBJETO
+            let cidade = {
+                id: result[0].cidade_id,
+                nome: result[0].cidade_nome,
+                estado: {
+                    id: result[0].estado_id,
+                    nome: result[0].estado_nome,
+                    sigla: result[0].estado_sigla
+                }
+            }
+
+            res.send(cidade);
         });
     },
-
-    update: (req, res) => {
-        // ATULIZA O ID DO OBJETO DO REQ.BODY
-        req.body.id = req.body.params.id;
-
-        respository.update(req.body, (error, result) => {
+    update: (req,res) => {
+        //Converter de OBJETO para RELACIONAL
+        const cidade = {
+            id: req.params.id,
+            nome: req.body.nome,
+            estado_id: req.body.estado.id
+        }
+        
+        repository.update(cidade, (error, result) => {
             if (error) {
                 res.status(500).send(error);
             }
+
             if (result.affectedRows == 0) {
-                res.result(404).send('Not Found');
+                res.status(404).send('not found');
             }
+            
             res.send(result);
         });
-
     },
-
-    delete: (req, res) => {
-        respository.delete(req.params, (error, result) => {
+    delete: (req,res) => {
+        repository.delete(req.params, (error, result) => {
             if (error) {
                 res.status(500).send(error);
             }
-            res.status(204)(result[0]);
+
+            res.status(204).send();
         });
     }
 }

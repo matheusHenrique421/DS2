@@ -9,8 +9,3 @@ module.exports = knex({
         database: 'mvcdb'
     }
 });
-
-
-
-
- 

@@ -1,4 +1,5 @@
 const repository = require('../repository/cidade.repository');
+
 module.exports = {
     find :(req,res) => {
 

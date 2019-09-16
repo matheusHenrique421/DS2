@@ -1,13 +1,13 @@
-module.exports = (app) => {
+module.exports = app => {
 
-    app.get('/tarefa04', (req, res) => {
+    app.get('/tarefa04', (req,res) => {
 
+        var {valor} = req.query;
 
-        var valor = req.query.valor;
-        var resultado = (valor >= 0)  ? 'POSITIVO' : 'NEGATIVO';
-        res.send(`O numero ${valor}, enviado por parametro, e ${resultado}.`)
+        var resultado = valor >= 0 ? 'POSITIVO' : 'NEGATIVO';
 
-
-
+        res.send(`O número ${valor}, enviado por parâmetro, é ${resultado}.`)
+        
     });
+
 }
