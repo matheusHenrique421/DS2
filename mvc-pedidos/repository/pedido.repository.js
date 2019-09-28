@@ -1,7 +1,7 @@
 const connection = require('../mysql-connection');
 
 const query = 'SELECT p.id as p_id, p.codigo as p_codigo, p.dtpedido, '+
-                     'p.observacao, c.id as c_id, c.codigo as c_codigo, '+
+                     'c.id as c_id, c.codigo as c_codigo, '+
                      'c.nome as c_nome, c.email as c_email, v.id as v_id, '+
                      'v.codigo as v_codigo, v.nome as v_nome, v.email as v_email '+
               'FROM pedido p '+
