@@ -10,22 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-let EstadoEntity = class EstadoEntity {
+const cidade_entity_1 = require("./cidade.entity");
+let ClienteEntity = class ClienteEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], EstadoEntity.prototype, "id", void 0);
+], ClienteEntity.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: false, length: 100 }),
+    typeorm_1.Column({ length: 6, nullable: false }),
     __metadata("design:type", String)
-], EstadoEntity.prototype, "nome", void 0);
+], ClienteEntity.prototype, "codigo", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: false, length: 2 }),
+    typeorm_1.Column({ length: 50, nullable: false }),
     __metadata("design:type", String)
-], EstadoEntity.prototype, "sigla", void 0);
-EstadoEntity = __decorate([
-    typeorm_1.Entity({ name: 'estado' })
-], EstadoEntity);
-exports.EstadoEntity = EstadoEntity;
-//# sourceMappingURL=estado.entity.js.map
+], ClienteEntity.prototype, "nome", void 0);
+__decorate([
+    typeorm_1.Column({ length: 100, nullable: false }),
+    __metadata("design:type", String)
+], ClienteEntity.prototype, "email", void 0);
+__decorate([
+    typeorm_1.ManyToOne(type => cidade_entity_1.CidadeEntity, { eager: true }),
+    typeorm_1.JoinColumn({ name: 'cidade_id' }),
+    __metadata("design:type", cidade_entity_1.CidadeEntity)
+], ClienteEntity.prototype, "cidade", void 0);
+ClienteEntity = __decorate([
+    typeorm_1.Entity({ name: 'cliente' })
+], ClienteEntity);
+exports.ClienteEntity = ClienteEntity;
+//# sourceMappingURL=cliente.entity.js.map

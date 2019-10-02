@@ -1,13 +1,13 @@
-import { EstadoEntity } from './../entity/estado.entity';
+import { ClienteEntity } from './../entity/cliente.entity';
 import { Request, Response } from 'express';
 import {getRepository} from 'typeorm'
 
-class EstadoController {
+class ClienteController {
 
     public async find(req: Request, res: Response) {
 
         try {
-            const estados = await getRepository(EstadoEntity).find();
+            const estados = await getRepository(ClienteEntity).find();
             
             res.send(estados);
         } catch (error) {
@@ -17,11 +17,11 @@ class EstadoController {
     }
 
     public async create(req: Request, res: Response) {
-        const estado = req.body;
+        const cliente = req.body;
 
         try {
-            await getRepository(EstadoEntity).save(estado);
-            res.send(estado);
+            await getRepository(ClienteEntity).save(cliente);
+            res.send(cliente);
 
         } catch(error) {
             res.status(500).send(error);
@@ -29,4 +29,4 @@ class EstadoController {
     }
 }
 
-export default new EstadoController();
+export default new ClienteController();

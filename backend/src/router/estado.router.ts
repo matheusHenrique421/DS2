@@ -1,5 +1,5 @@
-import { Router } from "express";
-import  estadoController from '../controller/estado.controller';
+import { Router } from 'express';
+import  estadoController  from '../controller/estado.controller';
 
 class EstadoRouter {
 
@@ -16,10 +16,6 @@ class EstadoRouter {
         this.router.post('/', estadoController.create);
     }
 
-
 }
-
-
-
 
 export default new EstadoRouter().router;
