@@ -13,10 +13,6 @@ export class CidadeService {
   public find():Observable<CidadeEntity[]> {
     return this.http.get<CidadeEntity[]>( environment.urlSaas+ '/cidades');
   }
-
-  private newMethod() {
-    return "urlSaaS";
-  }
 }
 
 export class EstadoEntity {

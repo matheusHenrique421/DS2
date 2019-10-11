@@ -11,30 +11,26 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  public find(): Observable<ClienteEntity[]> {
-    return this.http.get<ClienteEntity[]>(environment.urlSaas + '/cliente');
+  public find():Observable<ClienteEntity[]> {
+    return this.http.get<ClienteEntity[]>( environment.urlSaas+ '/cliente');
   }
-
-
-  public save(cliente: ClienteEntity) {
+  public save( cliente: ClienteEntity ) {
     if (cliente.id) {
-      return this.update(cliente);
+      return this.update( cliente );
     } else {
-      return this.create(cliente);
+      return this.create( cliente );
     }
   }
-
-  private delete(id: number): Observable<ClienteEntity> {
-    return this.http.delete<ClienteEntity>(environment.urlSaas + '/cliente/' + id);
+  public delete( id: number ):Observable<ClienteEntity> {
+    return this.http.delete<ClienteEntity>( environment.urlSaas+ '/cliente/'+ id);
+  }
+  private create( cliente: ClienteEntity ):Observable<ClienteEntity> {
+    return this.http.post<ClienteEntity>( environment.urlSaas+ '/cliente', cliente);
+  }
+  private update( cliente: ClienteEntity ):Observable<ClienteEntity> {
+    return this.http.put<ClienteEntity>( environment.urlSaas+ '/cliente/'+ cliente.id, cliente);
   }
 
-  public create(cliente: ClienteEntity): Observable<ClienteEntity> {
-    return this.http.post<ClienteEntity>(environment.urlSaas + '/cliente', cliente);
-  }
-
-  private update(cliente: ClienteEntity): Observable<ClienteEntity> {
-    return this.http.put<ClienteEntity>(environment.urlSaas + '/cliente/' + cliente.id, cliente);
-  }
 }
 
 export class ClienteEntity {

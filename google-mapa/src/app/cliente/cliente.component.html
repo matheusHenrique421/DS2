@@ -11,7 +11,7 @@
 		<div class="formulario">
 
 			<mat-form-field>
-				<input matInput placeholder="Código" [(ngModel)]="cliente.codigo">
+				<input matInput placeholder="Código" [(ngModel)]="cliente.codigo" >
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
@@ -23,8 +23,8 @@
 			</mat-form-field>
 
 			<mat-form-field class="full-width">
-				<mat-label>Cidade</mat-label>
-				<mat-select placeholder="cidade" [(ngModel)]="cliente.cidade" [compareWith]='compareOptions'>
+				<mat-select placeholder="Cidade" [(value)]="cliente.cidade"
+				            [compareWith]="compareOptions">
 					<mat-option *ngFor="let cidade of cidades" [value]="cidade">
 						{{ cidade.estado.sigla }} - {{ cidade.nome }}
 					</mat-option>
@@ -36,12 +36,12 @@
 		<mat-toolbar>
 			<span class="flex-spacer"></span>
 			<button mat-button>Cancelar</button>
-			<button mat-raised-button color="primary">Confirmar</button>
+			<button mat-raised-button color="primary" (click)="confirmar()">Confirmar</button>
 		</mat-toolbar>
 
 	</mat-sidenav>
 
-	<mat-sidenav-content>	
+	<mat-sidenav-content>
 		<mat-card>
 			<mat-card-title>
 				<mat-toolbar color="primary">
@@ -51,9 +51,7 @@
 						<mat-icon>add</mat-icon>
 					</button>
 				</mat-toolbar>
-
-				<mat-progress-bar mode="indeterminate" color="warn" *ngIf="loading "></mat-progress-bar>
-
+				<mat-progress-bar mode="indeterminate" color="warn" *ngIf="loading"></mat-progress-bar>
 			</mat-card-title>
 
 			<mat-card-content>
@@ -107,11 +105,12 @@
 					<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 					<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 				</table>
+
 				<div class="panel-error" *ngIf="msgerror">
 					<img src="assets/oops.png">
-					<h1 class="mat-h1"> Ocorreu um Erro</h1>
-					<p class="mat-caption">{{msgerror}}</p>
-					<button mat-button color="warn" (click)="ngOnInit()"> Tentar Novamente </button>
+					<h1 class="mat-h1">Ocorreu um Erro</h1>
+					<p class="mat-caption">{{ msgerror }}</p>
+					<button mat-button color="warn" (click)="ngOnInit()">Tentar Novamente</button>
 				</div>
 			</mat-card-content>
 		</mat-card>
