@@ -1,9 +1,10 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
-// ROTAS
-import cidadeRouter from './router/cidade.router';
+
+//Rotas
 import estadoRouter from './router/estado.router';
+import cidadeRouter from './router/cidade.router';
 import clienteRouter from './router/cliente.router';
 
 class App {
@@ -24,9 +25,7 @@ class App {
     private routes(): void {
         this.express.use('/estados', estadoRouter);
         this.express.use('/cidades', cidadeRouter);
-        this.express.use('/cliente', clienteRouter);
-        
-
+        this.express.use('/clientes', clienteRouter);
     }
 }
 

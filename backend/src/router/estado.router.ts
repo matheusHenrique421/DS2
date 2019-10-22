@@ -14,6 +14,10 @@ class EstadoRouter {
     private init() {
         this.router.get('/', estadoController.find);
         this.router.post('/', estadoController.create);
+
+        this.router.get('/:id([0-9]+)', estadoController.findById);
+        this.router.put('/:id([0-9]+)', estadoController.update);
+        this.router.delete('/:id([0-9]+)', estadoController.delete);
     }
 
 }

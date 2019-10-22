@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import  clienteController  from '../controller/cliente.controller';
 
-class ClienteRouter {
+class CidadeRouter {
 
     public router: Router;
 
@@ -14,8 +14,12 @@ class ClienteRouter {
     private init() {
         this.router.get('/', clienteController.find);
         this.router.post('/', clienteController.create);
+
+        this.router.get('/:id([0-9]+)', clienteController.findById);
+        this.router.put('/:id([0-9]+)', clienteController.update);
+        this.router.delete('/:id([0-9]+)', clienteController.delete);
     }
 
 }
 
-export default new ClienteRouter().router;
+export default new CidadeRouter().router;
