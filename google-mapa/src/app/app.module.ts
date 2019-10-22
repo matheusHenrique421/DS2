@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from './appcomponent';
 import { ClienteComponent } from './cliente/cliente.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -22,11 +22,17 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ConfirmDialogComponent } from './_components/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CidadeComponent } from './cidade/cidade.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClienteComponent
+    ClienteComponent,
+    ConfirmDialogComponent,
+    CidadeComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +52,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     MatMenuModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
+  entryComponents:[ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
