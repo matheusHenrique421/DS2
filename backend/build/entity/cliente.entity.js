@@ -18,15 +18,15 @@ __decorate([
     __metadata("design:type", Number)
 ], ClienteEntity.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column({ length: 6, nullable: false }),
+    typeorm_1.Column({ nullable: false, length: 6 }),
     __metadata("design:type", String)
 ], ClienteEntity.prototype, "codigo", void 0);
 __decorate([
-    typeorm_1.Column({ length: 50, nullable: false }),
+    typeorm_1.Column({ nullable: false, length: 50 }),
     __metadata("design:type", String)
 ], ClienteEntity.prototype, "nome", void 0);
 __decorate([
-    typeorm_1.Column({ length: 100, nullable: false }),
+    typeorm_1.Column({ nullable: false, length: 255 }),
     __metadata("design:type", String)
 ], ClienteEntity.prototype, "email", void 0);
 __decorate([

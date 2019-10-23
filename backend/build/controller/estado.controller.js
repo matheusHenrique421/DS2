@@ -35,6 +35,65 @@ class EstadoController {
             }
         });
     }
+    findById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const id = req.params.id;
+            try {
+                //Busca registro pelo ID
+                const estado = yield typeorm_1.getRepository(estado_entity_1.EstadoEntity).findOne(id);
+                //Se não encontrar, devolve erro 404
+                if (!estado) {
+                    res.status(404).send('Not found');
+                    return;
+                }
+                res.send(estado);
+            }
+            catch (error) {
+                res.status(500).send(error);
+            }
+        });
+    }
+    update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const id = req.params.id;
+            const novo = req.body;
+            try {
+                //Busca registro pelo ID
+                const estado = yield typeorm_1.getRepository(estado_entity_1.EstadoEntity).findOne(id);
+                //Se não encontrar, devolve erro 404
+                if (!estado) {
+                    res.status(404).send('Not found');
+                    return;
+                }
+                yield typeorm_1.getRepository(estado_entity_1.EstadoEntity).update(estado.id, novo);
+                //Atualiza ID do novo
+                novo.id = estado.id;
+                res.send(novo);
+            }
+            catch (error) {
+                res.status(500).send(error);
+            }
+        });
+    }
+    delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const id = req.params.id;
+            try {
+                //Busca registro pelo ID
+                const estado = yield typeorm_1.getRepository(estado_entity_1.EstadoEntity).findOne(id);
+                //Se não encontrar, devolve erro 404
+                if (!estado) {
+                    res.status(404).send('Not found');
+                    return;
+                }
+                yield typeorm_1.getRepository(estado_entity_1.EstadoEntity).delete(estado);
+                res.status(204).send();
+            }
+            catch (error) {
+                res.status(500).send(error);
+            }
+        });
+    }
 }
 exports.default = new EstadoController();
 //# sourceMappingURL=estado.controller.js.map

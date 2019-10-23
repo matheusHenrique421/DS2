@@ -11,7 +11,7 @@ export class CidadeService {
   constructor(private http: HttpClient) { }
 
   public find():Observable<CidadeEntity[]> {
-    return this.http.get<CidadeEntity[]>( environment.urlSaas+ '/cidades');
+    return this.http.get<CidadeEntity[]>( environment.urlSaas+ '/cidade');
   }
 }
 

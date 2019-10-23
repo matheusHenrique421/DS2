@@ -23,9 +23,9 @@ class App {
     }
 
     private routes(): void {
-        this.express.use('/estados', estadoRouter);
-        this.express.use('/cidades', cidadeRouter);
-        this.express.use('/clientes', clienteRouter);
+        this.express.use('/estado', estadoRouter);
+        this.express.use('/cidade', cidadeRouter);
+        this.express.use('/cliente', clienteRouter);
     }
 }
 
