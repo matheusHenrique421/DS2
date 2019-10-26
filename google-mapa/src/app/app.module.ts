@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './appcomponent';
@@ -26,7 +25,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from './_components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CidadeComponent } from './cidade/cidade.component';
+
+
+import { AgmCoreModule } from '@agm/core';
 import { MapaComponent } from './mapa/mapa.component';
+
 
 
 @NgModule({
@@ -36,6 +39,8 @@ import { MapaComponent } from './mapa/mapa.component';
     ConfirmDialogComponent,
     CidadeComponent,
     MapaComponent
+  
+    
   ],
   imports: [
     BrowserModule,
@@ -57,9 +62,9 @@ import { MapaComponent } from './mapa/mapa.component';
     MatProgressBarModule,
     MatSnackBarModule,
     MatDialogModule,
-    
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBRroHh-lH0ItKbEhwI1xY0B01uoBgkz2c'})
+      apiKey: 'AIzaSyDy6kfY-rVOtJhHStLoPWVYfpAMzcIMJlE'
+    })
   ],
   providers: [],
   entryComponents:[ConfirmDialogComponent],

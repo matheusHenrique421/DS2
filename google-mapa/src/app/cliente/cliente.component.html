@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container class="sidenav-container">
 	<mat-sidenav #sidenav position="end" mode="over" disableClose="true">
 		<mat-toolbar>
 			<h2>Adicionar Cliente</h2>
@@ -55,7 +55,7 @@
 			</mat-card-title>
 
 			<mat-card-content>
-				<table mat-table [dataSource]="Clientes" *ngIf="!msgerror">
+				<table mat-table [dataSource]="clientes" *ngIf="!msgerror">
 
 					<!-- Código Column -->
 					<ng-container matColumnDef="codigo">
