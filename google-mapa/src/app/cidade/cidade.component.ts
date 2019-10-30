@@ -1,11 +1,11 @@
-import { CidadeService, CidadeEntity } from './../_services/cidade.service';
-import { EstadoService, EstadoEntity } from './../_services/estado.service';
+import { CidadeEntity, CidadeService } from '../_services/cidade.service';
+import { EstadoService, EstadoEntity} from '../_services/estado.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent, ConfirmDialogModel } from '../_components/confirm-dialog/confirm-dialog.component';
 
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../_components/confirm-dialog/confirm-dialog.component';
 @Component({
   selector: 'app-cidade',
   templateUrl: './cidade.component.html',
@@ -15,7 +15,7 @@ export class CidadeComponent implements OnInit {
 
   @ViewChild(MatSidenav, { static: true }) sidenav: MatSidenav;
 
-  public displayedColumns: string[] = [ 'nome', 'estado', 'Latitude' ,'Longitude', 'options' ];
+  public displayedColumns: string[] = ['nome', 'estado', 'Latitude', 'Longitude', 'options'];
 
   public cidades: CidadeEntity[] = [];
   public estados: EstadoEntity[] = [];
@@ -31,11 +31,11 @@ export class CidadeComponent implements OnInit {
 
   ngOnInit() {
 
-    
+
     this.msgerror = '';
     this.loading = true;
 
-    
+
     this.service.find().subscribe(result => {
 
       this.cidades = result;
@@ -54,17 +54,21 @@ export class CidadeComponent implements OnInit {
       this.msgerror = error.message;
     }).add(() => this.loading = false);
   }
+
   private openSidebar(cidade: CidadeEntity) {
     this.cidade = cidade;
 
     this.sidenav.open();
   }
+
   public add() {
     this.openSidebar(new CidadeEntity());
   }
+
   public editar(cidade: CidadeEntity) {
     this.openSidebar(cidade);
   }
+
   public excluir(cidade: CidadeEntity): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
@@ -85,10 +89,10 @@ export class CidadeComponent implements OnInit {
       }
     })
   }
+
   public confirmar() {
     this.loading = true;
-
-    this.service.save(this.cidade).subscribe(result => {
+    this.service.save(this.cidade).(subscribe(result => {
       this.snackBar.open('Registro salvo com sucesso!', '', {
         duration: 3000
       });
