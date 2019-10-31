@@ -14,7 +14,7 @@ export class PedidoService {
   constructor(private http: HttpClient) { }
 
   public find(): Observable<PedidoEntity[]> {
-    return this.http.get<PedidoEntity[]>(environment.urlSaaS + '/pedido');
+    return this.http.get<PedidoEntity[]>(environment.urlSaaS + '/pedidos');
   }
   public save(pedido: PedidoEntity) {
     if (pedido.id) {
@@ -24,13 +24,13 @@ export class PedidoService {
     }
   }
   public delete(id: number): Observable<PedidoEntity> {
-    return this.http.delete<PedidoEntity>(environment.urlSaaS + '/pedido/' + id);
+    return this.http.delete<PedidoEntity>(environment.urlSaaS + '/pedidos/' + id);
   }
   private create(pedido: PedidoEntity): Observable<PedidoEntity> {
-    return this.http.post<PedidoEntity>(environment.urlSaaS + '/pedido', pedido);
+    return this.http.post<PedidoEntity>(environment.urlSaaS + '/pedidos', pedido);
   }
   private update(pedido: PedidoEntity): Observable<PedidoEntity> {
-    return this.http.put<PedidoEntity>(environment.urlSaaS + '/pedido/' + pedido.id, pedido);
+    return this.http.put<PedidoEntity>(environment.urlSaaS + '/pedidos/' + pedido.id, pedido);
   }
 
 }
