@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../_components/confirm-dialog/confirm-dialog.component';
 import { VendedorService, VendedorEntity } from '../_services/vendedor.service';
+import { TabelaprecoEntity, TabelaprecoService } from '../_services/tabelapreco.service';
 
 
 @Component({
@@ -16,18 +17,19 @@ import { VendedorService, VendedorEntity } from '../_services/vendedor.service';
 export class PedidoComponent implements OnInit {
   @ViewChild(MatSidenav, { static: true }) sidenav: MatSidenav;
 
-  public displayedColumns: string[] = ['codigo', 'cliente', 'vendedor', 'dtpedido', 'options'];
+  public displayedColumns: string[] = ['codigo', 'cliente', 'vendedor', 'dtpedido','total', 'options'];
 
   public pedidos: PedidoEntity[] = [];
   public clientes: ClienteEntity[] = [];
   public vendedores: VendedorEntity[] = [];
+  public tabelaprecos: TabelaprecoEntity[] = [];
 
   public pedido: PedidoEntity = new PedidoEntity();
 
   public msgerror: string;
   public loading: boolean;
 
-  constructor(private service: PedidoService, private clienteService: ClienteService, private vendedorService: VendedorService,
+  constructor(private service: PedidoService, private clienteService: ClienteService, private vendedorService: VendedorService, private tabelaprecoService: TabelaprecoService,
     private snackBar: MatSnackBar, private dialog: MatDialog) { }
 
   ngOnInit() {
@@ -54,6 +56,16 @@ export class PedidoComponent implements OnInit {
       this.vendedorService.find().subscribe(result => {
 
         this.vendedores = result;
+
+
+        this.loading = false;
+
+      }, error => {
+        this.msgerror = error.message;
+      });
+      this.tabelaprecoService.find().subscribe(result => {
+
+        this.tabelaprecos = result;
 
 
         this.loading = false;

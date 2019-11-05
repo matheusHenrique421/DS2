@@ -13,6 +13,7 @@ const cliente_entity_1 = require("./cliente.entity");
 const vendedor_entity_1 = require("./vendedor.entity");
 const typeorm_1 = require("typeorm");
 const itempedido_entity_1 = require("./itempedido.entity");
+const tabelapreco_entity_1 = require("./tabelapreco.entity");
 let PedidoEntity = class PedidoEntity {
 };
 __decorate([
@@ -27,6 +28,11 @@ __decorate([
     typeorm_1.Column({ nullable: false }),
     __metadata("design:type", String)
 ], PedidoEntity.prototype, "dtpedido", void 0);
+__decorate([
+    typeorm_1.ManyToOne(type => tabelapreco_entity_1.tabelaPrecoEntity, { eager: true, nullable: true }),
+    typeorm_1.JoinColumn({ name: 'tabelapreco_id' }),
+    __metadata("design:type", tabelapreco_entity_1.tabelaPrecoEntity)
+], PedidoEntity.prototype, "tabelapreco", void 0);
 __decorate([
     typeorm_1.ManyToOne(type => cliente_entity_1.ClienteEntity, { eager: true, nullable: false }),
     typeorm_1.JoinColumn({ name: 'cliente_id' }),

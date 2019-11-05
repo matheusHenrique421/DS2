@@ -4,6 +4,9 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { VendedorEntity } from './vendedor.service';
 import { ClienteEntity } from './cliente.service'
+import { ProdutoEntity } from './produto.service';
+import { TabelaprecoEntity } from './tabelapreco.service';
+
 
 
 @Injectable({
@@ -35,12 +38,25 @@ export class PedidoService {
 
 }
 
+export class PedidoItemEntity {
+  id: number;
+  produto: ProdutoEntity;
+  qtdate: number;
+  vlrunit: number;
+}
+
 export class PedidoEntity {
   id: number;
   codigo: string;
-  cliente: ClienteEntity;
-  vendedor: VendedorEntity;
+  cliente_id: ClienteEntity;
+  vendedor_id: VendedorEntity;
   dtpedido: Date;
+  tabelapreco: TabelaprecoEntity;
+  observacao: string;
+  itens: PedidoItemEntity[];
 
 
+  constructor() {
+    this.itens = [];
+  }
 }

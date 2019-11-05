@@ -73,34 +73,42 @@
 						<th mat-header-cell *matHeaderCellDef> Vendedor </th>
 						<td mat-cell *matCellDef="let pedido"> {{pedido.vendedor.nome}} </td>
                     </ng-container>
+
+                    <ng-container matColumnDef="tabelapreco">
+                            <th mat-header-cell *matHeaderCellDef> Tabela Preco </th>
+                            <td mat-cell *matCellDef="let pedido"> {{pedido.tabelapreco.nome}} </td>
+                        </ng-container>
                     
                     <!-- Data Column -->
 					<ng-container matColumnDef="dtpedido">
 						<th mat-header-cell *matHeaderCellDef> Data Pedido </th>
 						<td mat-cell *matCellDef="let pedido"> {{pedido.dtpedido}} </td>
+                    </ng-container>
+                    					<!-- Data Column -->
+					<ng-container matColumnDef="total">
+							<th mat-header-cell *matHeaderCellDef> Total </th>
+							<td mat-cell *matCellDef="let Pedido"> {{pedido.itens | TotalPedido | currency}} </td>
 					</ng-container>
-
-					
-
+	
 					<!-- Options Column -->
 					<ng-container matColumnDef="options">
-						<th mat-header-cell *matHeaderCellDef> </th>
-						<td mat-cell *matCellDef="let pedido">
-							<button mat-icon-button [matMenuTriggerFor]="menu">
-								<mat-icon>more_vert</mat-icon>
-							</button>
-							<mat-menu #menu="matMenu">
-								<button mat-menu-item (click)="excluir(pedido)">
-									<mat-icon>delete</mat-icon>
-									<span>Excluir</span>
-								</button>
-								<button mat-menu-item (click)="editar(pedido)">
-									<mat-icon>edit</mat-icon>
-									<span>Editar</span> 
-								</button>
-							</mat-menu>
-						</td>
-					</ng-container>
+                            <th mat-header-cell *matHeaderCellDef> </th>
+                            <td mat-cell *matCellDef="let pedido">
+                                <button mat-icon-button [matMenuTriggerFor]="menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="excluir(pedido)">
+                                        <mat-icon>delete</mat-icon>
+                                        <span>Excluir</span>
+                                    </button>
+                                    <button mat-menu-item (click)="editar(pedido)">
+                                        <mat-icon>visibility</mat-icon>
+                                        <span>Visualizar</span>
+                                    </button>
+                                </mat-menu>
+                            </td>
+                        </ng-container>
 
 					<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 					<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
